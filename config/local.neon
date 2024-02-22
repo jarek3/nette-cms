@@ -1,0 +1,9 @@
+parameters:
+
+# Application-wide database connection configuration.
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=nette-cms'  # Database type, address and name
+	user: root   # username
+	password:       # password
+	options:
+			lazy: yes

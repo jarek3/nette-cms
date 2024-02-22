@@ -1,0 +1,8 @@
+{block title}Administrace webu{/block}
+{block description}Administrace webu.{/block}
+{block content}
+<p>Vítejte v administraci! Jste přihlášeni jako <b>{$username}</b>.</p>
+<p n:if="!$user->isInRole('admin')">Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
+<h2><a n:href=Article:editor>Přidat článek</a></h2>
+<h2><a n:href=Article:list>Seznam článků</a></h2>
+<h2><a n:href=logout>Odhlásit</a></h2>

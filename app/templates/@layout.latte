@@ -1,0 +1,61 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <meta name="description" content="{include description|striptags}"> -->
+
+	<title>{include title|striptags}</title>
+	{block css}
+		<link rel="stylesheet" href="{$basePath}/css/style.css">
+	{/block}
+    {block head}{/block}
+</head>
+
+<body>
+    <header>
+        <h1>Jednoduchý redakční systém v Nette</h1>
+    </header>
+    <div class=container>
+        {* Výpis flash zpráv. *}
+        <div n:foreach="$flashes as $flash" n:class="alert, 'alert-' . $flash->type">{$flash->message}</div>
+
+        <nav>
+            <ul>
+                <li><a n:href=:Core:Article:>Úvod</a></li>
+                <li><a n:href=:Core:Article:list>Seznam článků</a></li>
+                <li><a n:href=:Core:Administration:>Administrace</a></li>
+            </ul>
+        </nav>
+
+
+        <br clear = both;>
+        <article>
+            <header>
+                <h1>{include title}</h1>
+            </header>
+            <section>
+                {include content} {* Vložení obsahu do šablony. *}
+            </section>
+        </article>
+    </div>
+
+    <footer>
+        <p>
+            Jednoduchý redakční systém v Nette
+        </p>
+    </footer>
+
+    {block scripts}
+        <script src="https://unpkg.com/naja@2/dist/Naja.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+        <script src="{$basePath}/js/main.js"></script>
+    {/block}
+</body>
+</html>

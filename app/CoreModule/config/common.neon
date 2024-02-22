@@ -1,0 +1,29 @@
+#
+# Konfigurační soubor pro CoreModule.
+#
+parameters:
+    defaultArticleUrl: 'uvod' # URL výchozího článku
+    contactEmail: 'admin@localhost.cz' # Kontaktní email
+
+
+# Nastavení služeb pro CoreModule.
+services:
+    - App\CoreModule\Model\ArticleManager # Vlastní služba dále přístupná pomocí DI.
+    - App\CoreModule\Presenters\ArticlePresenter(%defaultArticleUrl%) # Předání nastavení při vytváření služby presenteru.
+
+
+	# Nastavení služby pro oprávnění uživatelů v rámci CoreModule (ACL).
+    security.authorizator:
+        setup:
+        # Zdroje CoreModule.
+        - addResource(Core:Administration)
+        - addResource(Core:Article)
+        - addResource(Core:Contact)
+        # Pravidla přístupu.
+        - allow(guest, Core:Administration, login)
+        - allow(guest, Core:Administration, register)
+        - allow(guest, Core:Article, default)
+        - allow(guest, Core:Article, list)
+        - allow(guest, Core:Contact)
+        - allow(member, Core:Administration, default)
+        - allow(member, Core:Administration, logout)
