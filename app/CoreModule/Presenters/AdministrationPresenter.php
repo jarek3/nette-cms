@@ -12,6 +12,7 @@ use Nette;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 
+
 /**
  * Presenter pro vykreslování administrační sekce.
  * @package App\CoreModule\Presenters
@@ -53,6 +54,12 @@ class AdministrationPresenter extends BasePresenter
     {
         $this->getUser()->logout();
         $this->redirect('login');
+    }
+
+    /** Předá jméno přihlášeného uživatele do šablony administrační stránky. */
+    public function renderDefault()
+    {
+        if ($this->user->isLoggedIn()) $this->template->username = $this->user->identity->username;
     }
 
 
