@@ -33,6 +33,7 @@ services:
             - addResource(Error)
             # Pravidla přístupu.
             - allow(admin) # Administrátor může všechno.
+            - allow(editor)
             - allow(guest, Error)
 
 	# Definice dalších služeb dále přístupných pomocí DI
@@ -45,6 +46,7 @@ security:
 	roles:
 		guest:
 		member: [guest]
+		editor:
 		admin:
 
 # Propojení s dalšími konfiguračními soubory.

@@ -62,7 +62,6 @@ class AdministrationPresenter extends BasePresenter
         if ($this->user->isLoggedIn()) $this->template->username = $this->user->identity->username;
     }
 
-
     /**
      * Vytváří a vrací přihlašovací formulář pomocí továrny.
      * @return Form přihlašovací formulář
