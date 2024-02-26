@@ -12,8 +12,9 @@ class AuthorizatorFactory
         $acl = new Nette\Security\Permission;
 
         // pokud chceme, můžeme role a zdroje načíst z databáze
-        $acl->addRole('admin');
+        $acl->addRole('admin', 'editor');
         $acl->addRole('guest');
+        $acl->addRole('editor');
 
         $acl->addResource('backend');
 

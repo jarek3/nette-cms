@@ -6,6 +6,7 @@ use App\Model\DatabaseManager;
 use Nette\Database\Table\ActiveRow;
 use Nette\Database\Table\Selection;
 use Nette\Utils\ArrayHash;
+use Nette\Utils\Image;
 
 /**
  * Model pro správu článků v redakčním systému.
@@ -47,6 +48,7 @@ class ArticleManager extends DatabaseManager
      */
     public function saveArticle(ArrayHash $article)
     {
+        $image = Image::fromBlank(100, 200);
         if (empty($article[self::COLUMN_ID])) {
             unset($article[self::COLUMN_ID]);
             $this->database->table(self::TABLE_NAME)->insert($article);
