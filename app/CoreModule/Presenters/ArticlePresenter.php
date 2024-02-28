@@ -94,7 +94,7 @@ class ArticlePresenter extends BasePresenter
         $form->addText('title', 'Titulek')->setRequired();
         $form->addText('url', 'URL')->setRequired();
         $form->addTextArea('content', 'Obsah');
-        $form->addText('user_id', 'Autor');
+        $form->addText('username', 'Autor');
         $form->addMultiUpload('images', 'Fotky');
         $form->addSubmit('save', 'Uložit článek');
 

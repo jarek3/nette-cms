@@ -10,7 +10,7 @@
         <tr>
             <h2><a n:href="Article: $article->url"></a></h2>
 
-            <td>{$article->title}<td>{$article->content}</td><td>{$article->user_id}</td><td>{$article->created_at}</td>
+            <td>{$article->title}<td>{$article->content}</td><td>{$article->username}</td><td>{$article->created_at}</td>
             <br>
             {if $user->isInRole('admin', 'editor')}
                 <td><a n:href="editor $article->url">Editovat</a></td>
