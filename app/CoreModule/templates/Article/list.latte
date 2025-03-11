@@ -1,21 +1,25 @@
 {block title}Výpis článků{/block}
 {block description}Výpis všech článků.{/block}
 {block content}
-<table border >
-     <thead>
-        <tr><th>Název</th><th>Obsah</th><th>Autor</th><th>Datum vytvoření</th></tr>
-     </thead>
+<table border>
+    <thead>
+        <tr><th>Název</th><th>Popis</th><th>Autor</th><th><a n:href="this, order => 'ASC'" data-naja>Datum vytvoření ↑|<a n:href="this, order => 'DESC'" data-naja>↓</a></th>{if ($user->isInRole('admin')|| $user->isInRole('editor'))}<th colspan="2">Administrace</th>{/if}</tr>
+    </thead>
 
     <tbody n:foreach="$articles as $article">
         <tr>
-            <h2><a n:href="Article: $article->url"></a></h2>
+            <h2><a n:href="Article: $article->url" class="ajax"></a></h2>
 
-            <td>{$article->title}<td>{$article->content}</td><td>{$article->username}</td><td>{$article->created_at}</td>
-            <br>
-            {if $user->isInRole('admin', 'editor')}
-                <td><a n:href="editor $article->url">Editovat</a></td>
+            <td><a n:href="Article: $article->url" class="ajax">{$article->title}</a></td><td>{$article->description}</td><td>{$article->username}</td><td>{$article->created_at}</td>
+            {if ($user->isInRole('admin')|| $user->isInRole('editor'))}
+                <td><a n:href="editor $article->url" class="ajax">Editovat</a></td>
                 <td><a n:href="remove $article->url">Odstranit</a></td>
             {/if}
         </tr>
     </tbody>
 </table>
+
+<script src="https://unpkg.com/naja@latest"></script>
+<script>
+    naja.initialize();
+</script>
